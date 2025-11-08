@@ -110,15 +110,19 @@ public class Game
         else if (commandWord.equals("go")) {
             goRoom(command);
         }
+        else if (commandWord.equals("look")) {     
+            look();                                
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
-
+        
+        else if (commandWord.equals("eat")) {      
+            eat();                                  
+        }
         return wantToQuit;
     }
-
-    // implementations of user commands:
-
+    
     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
@@ -130,7 +134,7 @@ public class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        parser.getCommands().showAll();
     }
 
     /** 
@@ -180,4 +184,12 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
     
+    private void look() {
+        System.out.println(currentRoom.getLongDescription());
+    }
+    
+    private void eat() {
+        System.out.println("You have eaten now and you are not hungry any more.");
+    }
+
 }

@@ -41,8 +41,11 @@ Answers:
 
 9- keySet() returns a set of all the keys in a HashMap.
 
+17- No, you do not need to change the game class anymore, because Game gets commands dynamically from CommandWords via the parser, new commands are recognized automatically.
 
-
+18- Yes, making the methods static makes sense because there’s no instance data.
+    Pros: Simpler, no object needed
+    Cons: less flexible for future changes or multiple command sets
 
 
    
