@@ -1,3 +1,4 @@
+import java.util.HashMap;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -16,10 +17,7 @@ public class Room
 {
     private String description;
     
-    private Room northExit;
-    private Room southExit;
-    private Room eastExit;
-    private Room westExit;
+    private HashMap<String, Room> exits;
     
     /**
      * Create a room described "description". Initially, it has no exits. 
@@ -28,7 +26,8 @@ public class Room
      */
     public Room(String description) 
     {
-        this.description = description;
+     this.description = description;
+     exits = new HashMap<>();
     }
 
     /**
@@ -39,20 +38,9 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west) 
-    {
-        if(north != null) {
-            northExit = north;
-        }
-        if(east != null) {
-            eastExit = east;
-        }
-        if(south != null) {
-            southExit = south;
-        }
-        if(west != null) {
-            westExit = west;
-        }
+    
+    public void setExit(String direction, Room neighbor) {
+        exits.put(direction, neighbor);
     }
 
     /**
@@ -64,33 +52,19 @@ public class Room
     }
     
     public Room getExit(String direction) {
-        if (direction.equals("north")) {
-            return northExit;
-        } else if (direction.equals("east")) {
-            return eastExit;
-        } else if (direction.equals("south")) {
-            return southExit;
-        } else if (direction.equals("west")) {
-            return westExit;
-        } else {
-            return null; 
-        }
-    }
-    
-    public String getExitString() {
-        String exits = "Exits:";
-        if (northExit != null) exits += " north";
-        if (southExit != null) exits += " south";
-        if (eastExit != null)  exits += " east";
-        if (westExit != null)  exits += " west";
-        return exits;
+        return exits.get(direction);  // Lookup in the map
     }
 
+    public String getExitString() {
+        String exitNames = "Exits:";
+        for (String direction : exits.keySet()) {
+            exitNames += " " + direction;
+        }
+        return exitNames;
+    }
     
-    
-    
-    
-    
-    
-    
+    public String getLongDescription() {
+        return "You are " + description + ".\n" + getExitString();
+    }
+
 }

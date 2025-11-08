@@ -39,6 +39,11 @@ Answers:
    CommandWords: This class holds an enumeration of all command words known to the game. It is used to recognise commands as they are typed in.
    Room:A "Room" represents one location in the scenery of the game. It is connected to other rooms via exits.  The exits are labelled north, east, south, west.  For each direction, the room stores a reference to the neighboring room, or null if there is no exit in that direction. 
 
+9- keySet() returns a set of all the keys in a HashMap.
+
+
+
+
 
    
 
